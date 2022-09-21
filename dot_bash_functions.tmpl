@@ -8,7 +8,7 @@ function gc(){
     REPO=$1
     
     echo "$REPO"
-    project_dir=~/projects/$(echo "$REPO"|cut -d "/" -f4)
+    project_dir=$HOME/projects/$(echo "$REPO"|cut -d "/" -f4)
     repo_dir=${project_dir}/$(echo "$REPO"|cut -d "/" -f5|sed "s/\.git//g")
     
     if [ -d "$repo_dir" ]; then
@@ -27,6 +27,8 @@ function gc(){
     z $repo_dir
 }
 
+
+{{- if eq .chezmoi.hostname "precision" }}
 function ssh(){
     local tmux=$(env |grep ^TMUX)
     if [ ! -z "${tmux}" ]; then
@@ -39,6 +41,9 @@ function ssh(){
         konsoleprofile colors="Breeze"
     fi
 }
+{{- end }}
+
+
 
 function histgrep {
     local n_lines=10
