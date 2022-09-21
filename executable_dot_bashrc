@@ -40,12 +40,12 @@ export PROMPT_COMMAND="history -a;promptFunc"
 source ~/.profile
 
 # Path to the bash it configuration
-export BASH_IT="~/.bash_it"
+export BASH_IT="$HOME/.bash_it"
 
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME="~/.bash_it/themes/nwinkler/nwinkler.theme.bash"
+export BASH_IT_THEME="$HOME/.bash_it/themes/nwinkler/nwinkler.theme.bash"
 
 
 # (Advanced): Change this to the name of your remote repo if you

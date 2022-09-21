@@ -1,0 +1,65 @@
+
+function gpn(){
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+    git push --set-upstream origin $current_branch
+}
+
+function gc(){
+    REPO=$1
+    
+    echo "$REPO"
+    project_dir=~/projects/$(echo "$REPO"|cut -d "/" -f4)
+    repo_dir=${project_dir}/$(echo "$REPO"|cut -d "/" -f5|sed "s/\.git//g")
+    
+    if [ -d "$repo_dir" ]; then
+        echo "$repo_dir already exists"
+        z $repo_dir
+        return
+    fi
+    
+    if [ ! -d ${project_dir} ]; then
+        echo "Creating project directory ${project_dir}"
+        mkdir -p ${project_dir}
+    fi
+    
+    cd ${project_dir}
+    git clone $REPO
+    z $repo_dir
+}
+
+function ssh(){
+    local tmux=$(env |grep ^TMUX)
+    if [ ! -z "${tmux}" ]; then
+        tmux set-option status-style fg=white,bg=red
+        /usr/bin/ssh $@
+        tmux set-option status-style fg=black,bg=green
+    else
+        konsoleprofile colors="DarkPastels"
+        /usr/bin/ssh $@
+        konsoleprofile colors="Breeze"
+    fi
+}
+
+function histgrep {
+    local n_lines=10
+    if [[ "$1" =~ ^[0-9]*$ ]]; then
+        n_lines="$1"
+        shift
+    fi
+    grep "$@" ~/.full_history | tail -n "$n_lines"
+}
+
+
+function jw {
+    local pwd=$(pwd)
+    echo "just -f ~/.config/justfile -d ${pwd}"
+    just -f ~/.config/justfile -d ${pwd}
+}
+
+
+function promptFunc() {
+    # right before prompting for the next command, save the previous
+    # command in a file.
+    echo -en "[$(hostname)]\t$PWD\t$(history 1)\n" \
+    >> ~/.full_history
+}
