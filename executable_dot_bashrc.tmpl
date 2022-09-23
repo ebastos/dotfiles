@@ -15,8 +15,8 @@ shopt -s cdspell
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+if [ -z "${{ .chezmoi.osRelease.idLike }}_chroot" ] && [ -r /etc/{{ .chezmoi.osRelease.idLike }}_chroot ]; then
+    {{ .chezmoi.osRelease.idLike }}_chroot=$(cat /etc/{{ .chezmoi.osRelease.idLike }}_chroot)
 fi
 
 # enable color support of ls and also add handy aliases
@@ -45,7 +45,11 @@ export BASH_IT="$HOME/.bash_it"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
+{{- if eq .chezmoi.hostname "precision" }}
 export BASH_IT_THEME="$HOME/.bash_it/themes/nwinkler/nwinkler.theme.bash"
+{{- else }}
+export BASH_IT_THEME="$HOME/.bash_it/themes/zork/zork.theme.bash"
+{{- end }}
 
 
 # (Advanced): Change this to the name of your remote repo if you
