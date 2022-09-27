@@ -15,6 +15,7 @@ export PATH=$PATH:/usr/local/go/bin:~/go/bin/ #golang
 export PATH="$HOME/.poetry/bin:$PATH" #poetry
 export PATH="$HOME/.cargo/bin:$PATH" #rust
 export PATH="$HOME/.local/bin:$PATH" #python scripts
+export PATH="$HOME/Library/Python/3.9/bin:$PATH" #python scripts mac
 export EDITOR=vim
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
