@@ -52,6 +52,8 @@ export BASH_IT_THEME="$HOME/.bash_it/themes/nwinkler/nwinkler.theme.bash"
 export BASH_IT_THEME="$HOME/.bash_it/themes/zork/zork.theme.bash"
 {{- end }}
 
+# If using Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
