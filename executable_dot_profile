@@ -7,14 +7,9 @@
 # the default umask is set in /etc/profile
 #umask 022
 
+# .bash_env will be custom to each machine
+[ -f ~/.bash_env ] && source ~/.bash_env
 
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/go/
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
-export PATH=$PATH:/usr/local/go/bin:~/go/bin/ #golang
-export PATH="$HOME/.poetry/bin:$PATH" #poetry
-export PATH="$HOME/.cargo/bin:$PATH" #rust
-export PATH="$HOME/.local/bin:$PATH" #python scripts
 export PATH="$HOME/Library/Python/3.9/bin:$PATH" #python scripts mac
 export EDITOR=vim
 # set PATH so it includes user's private bin if it exists
